@@ -25,3 +25,7 @@ Route::delete('admin/categories/delete/{id}', [CategoryController::class, 'destr
 
 #front page routes
 Route::get('/', [FrontController::class , 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
