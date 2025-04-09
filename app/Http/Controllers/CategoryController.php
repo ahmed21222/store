@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
-
+        $validatedData['user_id'] = Auth::id();
         Category::create($validatedData);
         return redirect()->route('admin.categories.index')->with('success', 'تم إضافة الصنف بنجاح');
     }

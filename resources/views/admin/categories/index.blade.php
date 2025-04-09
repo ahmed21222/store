@@ -19,6 +19,7 @@
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">اسم الصنف</th>
+                    <th scope="col">تم الاضافة بوسطة</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
+                    <td>{{ $category->user->name ?? 'unknown' }}</td>
                     <td class="text-center">
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info btn-sm mx-1">
                             <i class="fas fa-edit"></i> تعديل

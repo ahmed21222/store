@@ -19,7 +19,10 @@
                         <th scope="col">الصنف</th>
                         <th scope="col">السعر</th>
                         <th scope="col">الكمية</th>
+                        <th scope="col">تم الاضافة بوسطة</th>
                         <th scope="col" colspan="2">الإجراءات</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +33,7 @@
                         <td>{{ $product->category->name }}</td>
                         <td>${{ number_format($product->price, 2) }}</td>
                         <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->user->name ?? 'unknown' }}</td>
                         <td>
                             <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i> تعديل

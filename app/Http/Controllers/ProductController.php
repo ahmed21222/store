@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -11,7 +12,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $products = Product::with('category')->get();
@@ -33,7 +34,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
-
+        $validatedData['user_id'] = Auth::id();
         Product::create($validatedData);
         return redirect()->route('admin.products.index')->with('success', 'تم إضافة المنتج بنجاح');
     }
